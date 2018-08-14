@@ -44,7 +44,7 @@ GO
 ALTER TABLE [dbo].[Game] ADD  DEFAULT (SYSUTCDATETIME()) FOR [Updated]
 GO
 
-CREATE TABLE [dbo].[GameParticipants](
+CREATE TABLE [dbo].[GameParticipant](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[UserId] [int] NOT NULL,
     [GameId] [int] NOT NULL,
@@ -61,22 +61,22 @@ CREATE TABLE [dbo].[GameParticipants](
 
 GO
 
-ALTER TABLE [dbo].[GameParticipants] ADD  CONSTRAINT [PK_GameParticipants] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[GameParticipant] ADD  CONSTRAINT [PK_GameParticipant] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Game] ADD  DEFAULT (SYSUTCDATETIME()) FOR [Created]
+ALTER TABLE [dbo].[GameParticipant] ADD  DEFAULT (SYSUTCDATETIME()) FOR [Created]
 GO
-ALTER TABLE [dbo].[Game] ADD  DEFAULT (SYSUTCDATETIME()) FOR [Updated]
+ALTER TABLE [dbo].[GameParticipant] ADD  DEFAULT (SYSUTCDATETIME()) FOR [Updated]
 GO
 
-ALTER TABLE [dbo].[GameParticipants]  WITH CHECK ADD CONSTRAINT [FK_GameParticipants_User] FOREIGN KEY([UserId])
+ALTER TABLE [dbo].[GameParticipant]  WITH CHECK ADD CONSTRAINT [FK_GameParticipant_User] FOREIGN KEY([UserId])
 REFERENCES [dbo].[User] ([Id])
 GO
 
-ALTER TABLE [dbo].[GameParticipants]  WITH CHECK ADD CONSTRAINT [FK_GameParticipants_Game] FOREIGN KEY([GameId])
+ALTER TABLE [dbo].[GameParticipant]  WITH CHECK ADD CONSTRAINT [FK_GameParticipant_Game] FOREIGN KEY([GameId])
 REFERENCES [dbo].[Game] ([Id])
 GO
 
